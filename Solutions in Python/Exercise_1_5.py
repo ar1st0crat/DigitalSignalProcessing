@@ -65,7 +65,7 @@ s1 = a1 * np.sin( 2*np.pi*n*f1/fs ) + \
 
 plt.figure(num="Initial signal, noise and their superposition")
 plt.subplot(211)
-plt.plot(n[:plot_samples], s1[:plot_samples])
+plt.plot(s1[:plot_samples])
 
 
 # noise (sn)
@@ -73,7 +73,7 @@ mu, sigma = 0, np.sqrt(max([a1,a2,a3]))
 sn = np.random.normal(mu,sigma, t*fs)
 
 plt.subplot(212)
-plt.plot(n[:plot_samples], sn[:plot_samples])
+plt.plot(sn[:plot_samples])
 
 
 left = 200
