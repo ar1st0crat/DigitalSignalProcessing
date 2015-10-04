@@ -1,4 +1,12 @@
 # -*- coding: utf-8 -*-
+
+"""
+Write code that processes a segment of an input signal and evaluates the
+following characteristics: 1) energy, 2) zero-cross rate, 3) mean, and 4)
+variance. The program should allow setting the positions of the first and the
+last samples of a signal segment to process.
+"""
+
 import numpy as np
 import scipy as sp
 import matplotlib.pyplot as plt

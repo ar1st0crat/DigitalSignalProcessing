@@ -1,4 +1,12 @@
 # -*- coding: utf-8 -*-
+
+"""
+Write code that computes the convolution and cross-correlation of signals
+and plots the results. Use signals from Example 2.4 and signal pairs {s1, s2}
+and {s1, s3} as the input into your program. Explain the results. Compare
+your results with the results of MATLAB functions conv() and xcorr().
+"""
+
 import numpy as np
 import scipy.signal as sig
 import matplotlib.pyplot as plt
@@ -38,7 +46,7 @@ def correlate(a,b):
     return res
 
 
-# demo
+# ===================================== demo (for signals x and h only)
 x = np.array([1, 5, 3, 2, 6])
 h = np.array([2, 3, 1])
 

@@ -1,4 +1,24 @@
 # -*- coding: utf-8 -*-
+
+"""
+In this task you’ll programmatically generate digital audio signals. Write
+code to do the following:
+    1. Generate signal s1 consisting of three sinusoids with frequencies f1, f2
+       and f3, respectively. The signal has to be 600 milliseconds long, and it
+       should be sampled with sampling frequency fs. The values of the
+       frequencies are given in table 1 .1.
+    2. Generate noise signal sn 600 milliseconds long.
+    3. Superimpose signals s1 and sn (get the “noisy” version of s1). The
+       resulting signal will be s2.
+    4. Generate signal s3 by shifting s1 by 300 samples.
+    5. Generate signal s4. It must be identical to signal s1 except that
+       it has to be sampled at frequency fs4 = 11025 Hz.
+    6. Plot the first 500 samples of each signal.
+    7. Save each signal to WAVE file (set number of channels equal to 1).
+    8. Load each signal from corresponding WAVE file. Listen to signal s1 and s4.
+       Explain the difference.
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.io.wavfile as wav

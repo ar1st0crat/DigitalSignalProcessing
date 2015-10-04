@@ -1,4 +1,19 @@
 # -*- coding: utf-8 -*-
+
+"""
+In this exercise you will perform simple spectral analysis of signals. Write
+code to do the following:
+    1. Open WAVE files containing signals s1, s2, s3, s4, sn from exercise 1.3.
+       You will also be given speech file LAB2_SPEECH.wav containing
+       signal s5. Compute and plot magnitude and phase spectrums of each
+       signal (use FFT size N = fs so that you’ll analyze 1 sec of a signal).
+       What can you say about the magnitude spectrum of signal s4? 
+       Is frequency f3 present there? Explain your results.
+    2. Perform the Inverse FFT. Plot your results. Compare obtained signal
+       with source signal.
+    3. Plot the spectrogram of each signal.
+"""
+
 import numpy as np
 from pylab import specgram
 import matplotlib.pyplot as plt
@@ -16,7 +31,7 @@ f3 = 6100
 
 plot_samples = 500
 
-# =========================================== Part 1
+# =========================================== Part 1 (for signals s1 and sn only)
 # initial signal (s1)
 plt.figure(num="Initial signal")
 plt.subplot(211)
