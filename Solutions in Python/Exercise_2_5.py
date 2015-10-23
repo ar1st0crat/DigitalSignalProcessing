@@ -24,30 +24,24 @@ window_size = 93
 
 # =========================================== Part 1
 # initial signal x[n] = cos(pi*n/4)
-plt.figure(num="Initial signal and its spectrum")
-plt.subplot(311)
-
 n = np.arange(fs)
 s = np.cos( 2*np.pi*n*f/fs )
+spec = np.fft.fft(s,FFT_size)
+mag_spec = np.abs(spec)             # magnitude spectrum
+phase_spec = np.angle(spec)         # phase spectrum
 
+plt.figure(num="Initial signal and its spectrum")
+plt.subplot(311)
 plt.plot(s[:plot_samples])
 
 # spectrum of s (FFT_size samples taken)
 # plot only the 1st half of spectrum (since it's symmetric)
 plt.subplot(312)
-
-spec = np.fft.fft(s,FFT_size)
-mag_spec = np.abs(spec)             # magnitude spectrum
-
 plt.xlabel("Freq (Hz)")
 plt.xlim(0,FFT_size/2)
 plt.plot(mag_spec[:FFT_size/2])
 
-
 plt.subplot(313)
-
-phase_spec = np.angle(spec)         # phase spectrum
-
 plt.xlabel("Freq (Hz)")
 plt.xlim(0,FFT_size/2)
 plt.plot(phase_spec[:FFT_size/2])
@@ -55,65 +49,55 @@ plt.plot(phase_spec[:FFT_size/2])
 plt.show()
 
 # ============================================ Part 2
-plt.figure(num="Weighted signal and its spectrum")
-plt.subplot(311)
-
 weighted = s[:window_size] * np.hamming(window_size)
 
+ext = np.ceil(np.log2(window_size))     # compute closest power of 2 for window_size
+FFT_size = int(np.power(2,ext))
+
+spec = np.fft.fft(weighted,FFT_size)
+mag_spec = np.abs(spec)             # magnitude spectrum
+phase_spec = np.angle(spec)         # phase spectrum
+
+plt.figure(num="Weighted signal and its spectrum")
+plt.subplot(311)
 plt.plot(weighted)
 
 # spectrum of s (FFT_size samples taken with zero-padding)
 # plot only the 1st half of spectrum (since it's symmetric)
 plt.subplot(312)
-
-ext = np.ceil(np.log2(window_size))     # compute closest power of 2 for window_size
-FFT_size = np.power(2,ext)
-
-spec = np.fft.fft(weighted,FFT_size)
-mag_spec = np.abs(spec)             # magnitude spectrum
-
 plt.xlabel("Freq (Hz)")
 plt.xlim(0,FFT_size/2)
 plt.plot(mag_spec[:FFT_size/2])
 
-
 plt.subplot(313)
-
-phase_spec = np.angle(spec)         # phase spectrum
-
 plt.xlabel("Freq (Hz)")
 plt.xlim(0,FFT_size/2)
-plt.plot(phase_spec[:FFT_size/2])
+plt.plot(np.unwrap(phase_spec[:FFT_size/2]))
 
 plt.show()
 
 
-plt.figure(num="Weighted signal and its spectrum for 512-point FFT")
-plt.subplot(311)
-
 weighted = s[:window_size] * np.hamming(window_size)
 
+FFT_size = 512
+spec = np.fft.fft(weighted,FFT_size)
+mag_spec = np.abs(spec)             # magnitude spectrum
+phase_spec = np.angle(spec)         # phase spectrum
+
+plt.figure(num="Weighted signal and its spectrum for 512-point FFT")
+plt.subplot(311)
 plt.plot(weighted)
 
 # spectrum of s (fs samples taken)
 # plot only the 1st half of spectrum (since it's symmetric)
 plt.subplot(312)
-
-FFT_size = 512
-spec = np.fft.fft(weighted,FFT_size)
-mag_spec = np.abs(spec)             # magnitude spectrum
-
 plt.xlabel("Freq (Hz)")
 plt.xlim(0,FFT_size/2)
 plt.plot(mag_spec[:FFT_size/2])
 
-
 plt.subplot(313)
-
-phase_spec = np.angle(spec)         # phase spectrum
-
 plt.xlabel("Freq (Hz)")
 plt.xlim(0,FFT_size/2)
-plt.plot(phase_spec[:FFT_size/2])
+plt.plot(np.unwrap(phase_spec[:FFT_size/2]))
 
 plt.show()
